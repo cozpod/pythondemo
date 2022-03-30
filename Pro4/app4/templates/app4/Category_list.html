@@ -1,0 +1,42 @@
+{% extends "app4/catagory.html" %} {% block category %}
+
+<div class="card embed-responsive">
+    <p>Category List</p>
+    <table id="example" class="table table-striped embed-responsive">
+        <thead class="boder-bottom font-weight-bold">
+            <tr>
+                <td>Category</td>
+                <td>subcategory</td>
+
+                <!-- <td>Sub category</td> -->
+                <td>
+                    <a href="{% url 'category_page' %}" class="btn btn-outline-success">
+                        <i class="fas fa-plus"></i>Add Record</a>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cate in Category_list %}
+            <tr>
+                <td>{{cate.category}}</td>
+                <td>{{cate.sub_category}}</td>
+                <!-- <td>{{cate.sub_category}}</td> -->
+                <td>
+                    <a href="{% url 'category_update' cate.id %}" class="btn text-secondary px-0 ">
+                        <i class="far fa-edit fa-lg"></i>
+                    </a>
+                    <form action="{% url 'category_delete' cate.id %}" method="POST" class="d-inline">
+                        {% csrf_token %}
+                        <button class="btn">
+                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                    </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock category %}

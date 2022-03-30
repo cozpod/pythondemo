@@ -1,0 +1,50 @@
+{% extends "ProApp/index.html" %} {% block content %} {% load crispy_forms_tags %} {% load static %}
+
+
+<p>Employee List</p>
+<table class="table table-borderless">
+    <thead class="boder-bottom font-weight-bold">
+        <tr class="odd:bg-white even:bg-slate-100">
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Gender</td>
+            <td>Department</td>
+            <td>City</td>
+            <td>Position</td>
+            <td>Email</td>
+            <td>Image</td>
+
+            <td>
+                <a href="{% url 'Employee_insert' %}" class="btn btn-outline-success">
+                    <i class="fas fa-plus"></i>Add Record</a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in Employee_list %}
+        <tr class="odd:bg-white even:bg-slate-100">
+            <td>{{employee.Name}}</td>
+            <td>{{employee.Surname}}</td>
+            <td>{{employee.Gender}}</td>
+            <td>{{employee.Department}}</td>
+            <td>{{employee.City}}</td>
+            <td>{{employee.position}}</td>
+            <td>{{employee.Email}}</td>
+            <td>{{employee.Display_picture}}</td>
+            <td>
+                <a href="{% url 'Employee_update' employee.id %}" class="btn text-secondary px-0 ">
+                    <i class="far fa-edit fa-lg"></i>
+                </a>
+                <form action="{% url 'Employee_delete' employee.id %}" method="POST" class="d-inline">
+                    {% csrf_token %}
+                    <button class="btn">
+                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends "app4/catagory.html" %} {% block category %} {% load crispy_forms_tags %} {% load static %}
+
+
+<p>Category Form </p>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card">
+
+        <div class="row">
+            <div class="col-md-4">
+                {{form.category|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{form.sub_category|as_crispy_field}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-database"></i> Submit</button>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'catagory_list' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-stream"></i>Back to the list</a>
+            </div>
+        </div>
+    </div>
+    
+</form>
+
+{% endblock category %}

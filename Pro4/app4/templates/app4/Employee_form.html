@@ -1,0 +1,56 @@
+{% extends "app4/index.html" %} {% block content %} {% load crispy_forms_tags %} {% load static %}
+
+<p>Employee Form </p>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card">
+        <div class="row">
+            <div class="col-md-6">
+                {{form.Name|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+                {{form.Surname|as_crispy_field}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                {{form.Gender|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+                {{form.Email|as_crispy_field}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                {{form.Department|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+                {{form.position|as_crispy_field}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                {{form.City|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+                {{form.Display_picture|as_crispy_field}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-database"></i> Submit</button>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'Employee_list' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-stream"></i>Back to the list</a>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock content %}
